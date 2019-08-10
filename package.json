@@ -1,0 +1,40 @@
+{
+  "name": "linkquest",
+  "version": "0.1.0",
+  "description": "Linkquest is an easy way to get all of the valid and invalid links on a single page or an entire site.",
+  "main": "build/index.js",
+  "bin": {
+    "linkquest": "cli/bin/linkquest.js"
+  },
+  "scripts": {
+    "test": "ava",
+    "tsc": "tsc",
+    "tsc:watch": "tsc --watch"
+  },
+  "keywords": [
+    "link",
+    "links",
+    "check",
+    "valid",
+    "invalid",
+    "host",
+    "url",
+    "website",
+    "page",
+    "analyitcs"
+  ],
+  "author": "Robert Corponoi",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/fs-extra": "^8.0.0",
+    "@types/puppeteer": "^1.19.0",
+    "ava": "^2.2.0",
+    "puppeteer": "^1.19.0",
+    "typescript": "^3.5.3"
+  },
+  "dependencies": {
+    "commander": "^3.0.0",
+    "fs-extra": "^8.1.0",
+    "ora": "^3.4.0"
+  }
+}
