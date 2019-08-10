@@ -8,9 +8,9 @@ Linkquest is an easy way to get all of the valid and invalid links on a single p
 
 <div align="center">
 
-[![NPM version](https://img.shields.io/npm/v/linkquest.svg?style=flat)](https://www.npmjs.com/package/stringops)
-[![Known Vulnerabilities](https://snyk.io/test/github/robertcorponoi/linkquest/badge.svg)](https://snyk.io/test/github/robertcorponoi/stringops)
-[![NPM downloads](https://img.shields.io/npm/dm/linkquest.svg?style=flat)](https://www.npmjs.com/package/stringops)
+[![NPM version](https://img.shields.io/npm/v/linkquest.svg?style=flat)](https://www.npmjs.com/package/linkquest)
+[![Known Vulnerabilities](https://snyk.io/test/github/robertcorponoi/linkquest/badge.svg)](https://snyk.io/test/github/robertcorponoi/linkquest)
+[![NPM downloads](https://img.shields.io/npm/dm/linkquest.svg?style=flat)](https://www.npmjs.com/package/linkquest)
 <a href="https://badge.fury.io/js/linkquest"><img src="https://img.shields.io/github/issues/robertcorponoi/linkquest.svg" alt="issues" height="18"></a>
 <a href="https://badge.fury.io/js/linkquest"><img src="https://img.shields.io/github/license/robertcorponoi/linkquest.svg" alt="license" height="18"></a>
 [![Gitter](https://badges.gitter.im/gitterHQ/gitter.svg)](https://gitter.im/robertcorponoi)
