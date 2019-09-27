@@ -6,6 +6,7 @@ import fs from 'fs-extra';
 import puppeteer from 'puppeteer';
 
 import Options from './Options';
+import Plugin from './interfaces/Plugin';
 
 /**
  * Linkquest retrieves all links from a host.
@@ -87,6 +88,15 @@ module.exports = class LinkQuest {
   private spinner: any = ora({ text: 'Loading unicorns', spinner: 'dots' });
 
   /**
+   * The plugins that have been passed to linkquest.
+   * 
+   * @private
+   * 
+   * @property {Array<Plugin>}
+   */
+  private plugins: Array<Plugin> = [];
+
+  /**
    * @param {string} host The hostname to retrieve links from.
    * @param {Object} [options={}]
    * @param {puppeteer.Browser} [options.browser=null] If you are already using puppeteer you can pass the browser instance so it gets reused.
@@ -125,6 +135,20 @@ module.exports = class LinkQuest {
   }
 
   /**
+   * Registers a Linkquest plugin.
+   * 
+   * @param {Object} plugin The plugin to register.
+   * @param {Object} options The options to pass to the plugin.
+   */
+  register(plugin: any, options: Object) {
+
+    const pl: Plugin = { instance: plugin, options: options };
+
+    this.plugins.push(pl);
+
+  }
+
+  /**
    * Calls itself recursively to gather and test all of the links of a domain.
    * 
    * If a link cannot be navigated to it will push it to the `badLinks` array and otherwise it will push it to
@@ -150,6 +174,8 @@ module.exports = class LinkQuest {
       await this.page.goto(url, { waitUtil: 'networkidle2', timeout: 60000 });
 
       this.links.push(url);
+
+      for (const plugin of this.plugins) await plugin.instance(plugin.options);
 
       if (stop) return;
 
@@ -188,6 +214,8 @@ module.exports = class LinkQuest {
 
     if (this.options.page) this.page = this.options.page;
     else this.page = await this.browser.newPage();
+
+    for (const plugin of this.plugins) if (!plugin.options.page) plugin.options.page = this.page;
 
   }
 

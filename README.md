@@ -24,6 +24,7 @@ Linkquest is an easy way to get all of the valid and invalid links on a single p
 - [Flags](#flags)
 - [Examples](#examples)
 - [Programmatic Usage](#programmatic-usage)
+- [Plugins](#plugins)
 
 ## **Install**
 
@@ -116,6 +117,48 @@ The options that can be passed to a new instance of linkquest are the same that 
 #### **start()**
 
 Starts the crawling of the host or url for links.
+
+## **Plugins**
+
+Linkquest supports a plugin infrastructure that allows you to hook into each page that's processed by Linkquest and complete a task.
+
+**Note:** As of right now, plugins are only supported when using Linkquest programmatically.
+
+### Registering Plugins
+
+To register a plugin with Linkquest, you can use the `register` method.
+
+| param   	| type   	| description                                                                                                   	| default 	|
+|---------	|--------	|---------------------------------------------------------------------------------------------------------------	|---------	|
+| plugin  	| Plugin 	| The plugin to register                                                                                        	|         	|
+| options 	| Object 	| The options to pass to the plugin. See the documentation on the plugin's page for what options are available. 	|         	|
+
+**Example**
+
+Below is an example of registering the `linquest-screenshot` plugin:
+
+```js
+const linkquest = new Linkquest('http://example.com/', { silent: true });
+
+linkquest.register(require('linkquest-screenshot'), {
+  output: path.resolve(__dirname, 'screenshots'),
+  sizes: {
+    mobile: {
+      pixel: [411, 731],
+      iphone: [375, 812]
+    },
+    tablet: {
+      ipad: [768, 1024],
+      galaxy: [360, 640]
+    },
+    desktop: {
+      hdr: [1920, 1080]
+    }
+  }
+});
+
+await linkquest.start();
+```
 
 ## License
 

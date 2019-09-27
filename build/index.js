@@ -57,6 +57,14 @@ module.exports = class LinkQuest {
          * @property {*}
          */
         this.spinner = ora_1.default({ text: 'Loading unicorns', spinner: 'dots' });
+        /**
+         * The plugins that have been passed to linkquest.
+         *
+         * @private
+         *
+         * @property {Array<Plugin>}
+         */
+        this.plugins = [];
         this.host = host;
         this.hostname = new URL(this.host).hostname;
         this.options = new Options_1.default(options);
@@ -74,6 +82,16 @@ module.exports = class LinkQuest {
             yield this.save();
             this.spinner.stop();
         });
+    }
+    /**
+     * Registers a Linkquest plugin.
+     *
+     * @param {Object} plugin The plugin to register.
+     * @param {Object} options The options to pass to the plugin.
+     */
+    register(plugin, options) {
+        const pl = { instance: plugin, options: options };
+        this.plugins.push(pl);
     }
     /**
      * Calls itself recursively to gather and test all of the links of a domain.
@@ -98,6 +116,8 @@ module.exports = class LinkQuest {
             try {
                 yield this.page.goto(url, { waitUtil: 'networkidle2', timeout: 60000 });
                 this.links.push(url);
+                for (const plugin of this.plugins)
+                    yield plugin.instance(plugin.options);
                 if (stop)
                     return;
                 const pageLinks = yield this.getUniqueLinks();
@@ -130,6 +150,9 @@ module.exports = class LinkQuest {
                 this.page = this.options.page;
             else
                 this.page = yield this.browser.newPage();
+            for (const plugin of this.plugins)
+                if (!plugin.options.page)
+                    plugin.options.page = this.page;
         });
     }
     /**
