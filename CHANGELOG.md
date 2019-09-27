@@ -1,3 +1,7 @@
+0.2.1 / 2019-09-27
+==================
+* [HOTFIX] Removed local module used for testing the implementation of plugins.
+
 0.2.0 / 2019-09-27
 ==================
 * [FEATURE] Added the ability to use linkquest plugins through `register`.
