@@ -1,6 +1,6 @@
 {
   "name": "linkquest",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Linkquest is an easy way to get all of the valid and invalid links on a single page or an entire site.",
   "main": "build/index.js",
   "bin": {

@@ -1,4 +1,4 @@
-0.2.1 / 2019-09-27
+0.2.2 / 2019-09-27
 ==================
 * [HOTFIX] Updated puppeteer to fix the security vulnerability.
 * [MISC] Updated all other dependencies to their latest versions.
