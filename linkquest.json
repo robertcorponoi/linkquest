@@ -1,1 +1,1 @@
-{"valid":["http://example.com/","http://www.iana.org/domains/example"],"invalid":[]}
+{"valid":["http://example.com/","https://www.iana.org/domains/example"],"invalid":[]}

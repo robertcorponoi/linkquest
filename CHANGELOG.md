@@ -1,5 +1,10 @@
 0.2.1 / 2019-09-27
 ==================
+* [HOTFIX] Updated puppeteer to fix the security vulnerability.
+* [MISC] Updated all other dependencies to their latest versions.
+
+0.2.1 / 2019-09-27
+==================
 * [HOTFIX] Removed local module used for testing the implementation of plugins.
 
 0.2.0 / 2019-09-27

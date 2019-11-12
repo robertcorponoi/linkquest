@@ -13,7 +13,7 @@ test('Gather links from a host and write to a JSON file', async t => {
   const results = await fs.readJSON('./linkquest.json');
 
   const expected = {
-    valid: ["http://example.com/", "http://www.iana.org/domains/example"],
+    valid: ["http://example.com/", "https://www.iana.org/domains/example"],
     invalid: []
   };
 
