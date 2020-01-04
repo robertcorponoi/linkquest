@@ -8,125 +8,66 @@ Linkquest is an easy way to get all of the valid and invalid links on a single p
 
 <div align="center">
 
-[![NPM version](https://img.shields.io/npm/v/linkquest.svg?style=flat)](https://www.npmjs.com/package/linkquest)
-[![Known Vulnerabilities](https://snyk.io/test/github/robertcorponoi/linkquest/badge.svg)](https://snyk.io/test/github/robertcorponoi/linkquest)
-[![NPM downloads](https://img.shields.io/npm/dm/linkquest.svg?style=flat)](https://www.npmjs.com/package/linkquest)
-<a href="https://badge.fury.io/js/linkquest"><img src="https://img.shields.io/github/issues/robertcorponoi/linkquest.svg" alt="issues" height="18"></a>
-<a href="https://badge.fury.io/js/linkquest"><img src="https://img.shields.io/github/license/robertcorponoi/linkquest.svg" alt="license" height="18"></a>
-[![Gitter](https://badges.gitter.im/gitterHQ/gitter.svg)](https://gitter.im/robertcorponoi)
+  [![NPM version](https://img.shields.io/npm/v/linkquest.svg?style=flat)](https://www.npmjs.com/package/linkquest)
+  [![Known Vulnerabilities](https://snyk.io/test/github/robertcorponoi/linkquest/badge.svg)](https://snyk.io/test/github/robertcorponoi/linkquest)
+  ![npm](https://img.shields.io/npm/dt/linkquest)
+  [![NPM downloads](https://img.shields.io/npm/dm/linkquest.svg?style=flat)](https://www.npmjs.com/package/linkquest)
+  <a href="https://badge.fury.io/js/linkquest"><img src="https://img.shields.io/github/issues/robertcorponoi/linkquest.svg" alt="issues" height="18"></a>
+  <a href="https://badge.fury.io/js/linkquest"><img src="https://img.shields.io/github/license/robertcorponoi/linkquest.svg" alt="license" height="18"></a>
+  [![Gitter](https://badges.gitter.im/gitterHQ/gitter.svg)](https://gitter.im/robertcorponoi)
 
 </div>
 
-## **Table of contents**
-
-- [Install](#install)
-- [Usage](#usage)
-- [Flags](#flags)
-- [Examples](#examples)
-- [Programmatic Usage](#programmatic-usage)
-- [Plugins](#plugins)
-
 ## **Install**
 
-To install it as a global command to use anywhere you can use:
+To install Linkquest, simply use:
 
-```shell
-$ npm install -g linkquest
-```
-
-Otherwise, if you just want to use it programmatically inside of a project, you can install it at a project level:
-
-```shell
+```bash
 $ npm install linkquest
 ```
 
-## **Usage**
+## Usage
 
-To use linkquest, all you need is the name of the page or site to crawl:
+**Note:** There have been major changes in how Linkquest works in v1.0.0. If you are looking for the old functionality, you might be looking for [linkquest-cli](https://github.com/robertcorponoi/linkquest-cli).
 
-```shell
-$ linkquest https://example.com/
-```
-
-This will crawl the page and save the output to the current working directory. If you want to instead crawl the whole host, you want to use:
-
-```shell
-$ linkquest https://example.com/ -h
-```
-
-which uses the host flag to tell linkquest to crawl every page it finds.
-
-## **Flags**
-
-To customize linkquest, you can use a combination of the flags below:
-
-```
-linkquest [options] <url>
-
--o, --output        Specify the directory to save the the "linkquest.json" file that contains the results of the crawl.
--n, --no-follow     Tells linkquest to crawl only the provided url and not the entire host.
--s, --silent        Hides all console output.
-```
-
-## **Examples**
-
-Crawling a host and saving the output to a Downloads folder:
-
-```shell
-linkquest -o /c/Users/Me/Downloads/ https://example.com/
-```
-
-Crawling a single page:
-
-```shell
-linkquest -n https://example.com/example
-```
-
-## Programmatic Usage
-
-Linkquest can be used programmatically in a similar way with the flags just replacing options:
+To use Linkquest in your project, simply create a new instance of it passing the url of the site to gather links from and then calling the start method:
 
 ```js
 const Linkquest = require('linkquest');
 
-const options = {
-  output: path.resolve(__dirname, 'data'),
-  silent: true
-};
-
 const linkquest = new Linkquest('https://example.com');
 
-linkquest.start();
+await linkquest.start();
 ```
 
-### Options
-
-The options that can be passed to a new instance of linkquest are the same that can be used as flags along with a couple of puppeteer ones that can be used if you already have instances of the browser and page object you want to reuse.
+The options that can be passed to a new instance of linkquest are as follows:
 
 | param           	| type              	| description                                                                            	| default       	|
 |-----------------	|-------------------	|----------------------------------------------------------------------------------------	|---------------	|
 | options         	| Object            	|                                                                                        	| {}            	|
 | options.browser 	| puppeteer.Browser 	| If you are already using puppeteer you can pass the browser instance so it gets reused 	| null          	|
 | options.page    	| puppeteer.Page    	| If you are already using puppeteer you can pass the page instance so it gets reused    	| null          	|
-| output          	| string            	| The directory to save the output to                                                    	| process.cwd() 	|
 | noFollow        	| boolean           	| If set to true, linkquest will not check the entire host and just the url provided     	| false         	|
-| silent          	| boolean           	| If set to true, all console output will be muted                                       	| false         	|
 
-### API
+## **API**
 
-#### **start()**
+#### **start**
 
-Starts the crawling of the host or url for links.
+Starts the crawling of the host or url for links. Note that this is an async method.
 
-## **Plugins**
+**example:**
 
-Linkquest supports a plugin infrastructure that allows you to hook into each page that's processed by Linkquest and complete a task.
+```js
+const Linkquest = require('linkquest');
 
-**Note:** As of right now, plugins are only supported when using Linkquest programmatically.
+const linkquest = new Linkquest('https://example.com');
 
-### Registering Plugins
+await linkquest.start();
+```
 
-To register a plugin with Linkquest, you can use the `register` method.
+### **register**
+
+Linkquest supports a plugin infrastructure that allows you to hook into each page that's processed by Linkquest and complete a task. The register method registers a linkquest-plugin with linkquest so it can be used.
 
 | param   	| type   	| description                                                                                                   	| default 	|
 |---------	|--------	|---------------------------------------------------------------------------------------------------------------	|---------	|
@@ -160,6 +101,74 @@ linkquest.register(require('linkquest-screenshot'), {
 await linkquest.start();
 ```
 
-## License
+## **Signals**
+
+Linkquest offers the ability to respond to certain events using signals.
+
+The following signals are dispatched by Linkquest:
+
+### **onNavigateToLink**
+
+This signal is dispatched when a link is navigated to.
+
+This data contained in this signal is the url that was navigated to and whether or not it is a valid link.
+
+**example:**
+
+```js
+const linkquest = new Linkquest('http://example.com/');
+
+linkquest.onNavigateToLink.add((link, isValid) => {
+  console.log(link, isValid);
+});
+
+await linkquest.start();
+```
+
+### **onLinksGathered**
+
+This signal is dispatched when all of the links on a page are gathered.
+
+The data contained in this signal is the page that the links were gathered from and an array of the links that have been gathered from that page.
+
+**example:**
+
+```js
+const linkquest = new Linkquest('http://example.com/');
+
+linkquest.onLinksGathered.add((url, links) => {
+  console.log(url, links);
+});
+
+await linkquest.start();
+```
+
+### **onComplete**
+
+This signal is dispatched when Linkquest is done gathering links.
+
+The data contained in this signal is the list of valid and invalid urls.
+
+**example:**
+
+```js
+const linkquest = new Linkquest('http://example.com/');
+
+linkquest.onComplete.add((validLinks, invalidLinks) => {
+  console.log(validLinks, invalidLinks);
+});
+
+await linkquest.start();
+```
+
+## **Tests**
+
+To run the tests available for Linkquest, use:
+
+```bash
+$ npm run test
+```
+
+## **License**
 
 MIT

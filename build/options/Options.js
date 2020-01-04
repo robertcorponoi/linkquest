@@ -25,14 +25,6 @@ class Options {
          */
         this.page = null;
         /**
-         * The path to save the outputted json file to.
-         *
-         * @property {string}
-         *
-         * @default process.cwd
-         */
-        this.output = process.cwd();
-        /**
          * Indicates whether the entire host should be checked or just the single url provided.
          *
          * @property {boolean}
@@ -40,14 +32,6 @@ class Options {
          * @default false
          */
         this.host = false;
-        /**
-         * Indicates whether all output should be muted or not.
-         *
-         * @property {boolean}
-         *
-         * @default false
-         */
-        this.silent = false;
         Object.assign(this, options);
     }
 }
