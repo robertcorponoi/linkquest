@@ -1,8 +1,10 @@
-<div align="center">
+<p align="center">
+  <img width="244" height="245" src="https://github.com/robertcorponoi/graphics/blob/master/linkquest/linkquest-logo.png?raw=true">
+</p>
 
-# Linkquest
+<h1 align="center">Linkquest</h1>
 
-Linkquest is an easy way to get all of the valid and invalid links on a single page or an entire site.
+<p align="center">Linkquest is an easy way to get all of the valid and invalid links on a single page or an entire site.</p>
 
 </div>
 

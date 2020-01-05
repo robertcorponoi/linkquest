@@ -1,3 +1,7 @@
+1.0.1 / 2020-01-04
+==================
+* [MISC] Added logo to README.
+
 1.0.0 / 2020-01-03
 ==================
 * [FEATURE] Added onNavigateToLink, onLinksGathered, and onComplete signals.
