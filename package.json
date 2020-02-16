@@ -1,6 +1,6 @@
 {
   "name": "linkquest",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Linkquest is an easy way to get all of the valid and invalid links on a single page or an entire site.",
   "main": "build/index.js",
   "scripts": {
@@ -24,11 +24,11 @@
   "license": "MIT",
   "devDependencies": {
     "@types/puppeteer": "^2.0.0",
-    "ava": "^2.4.0",
-    "typescript": "^3.7.4"
+    "ava": "^3.3.0",
+    "typescript": "^3.7.5"
   },
   "dependencies": {
-    "hypergiant": "^3.0.1",
-    "puppeteer": "^2.0.0"
+    "hypergiant": "^3.0.4",
+    "puppeteer": "^2.1.1"
   }
 }

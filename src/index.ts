@@ -10,7 +10,6 @@ import Plugin from './interfaces/Plugin';
  * Linkquest is an easy way to get all of the valid and invalid links on a single page or an entire site.
  */
 module.exports = class LinkQuest {
-
   /**
    * The host to retrieve links from.
    * 
