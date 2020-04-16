@@ -1,3 +1,6 @@
+## 1.0.3 / 2020-04-16
+- [MISC] Updated out-of-date dependencies to their latest versions which also fixed the fixed security vulnerabilities.
+
 ## 1.0.2 / 2020-02-15
 - [MISC] Updated dependencies to their latest versions.
 - [MISC] Updated CHANGELOG format.
